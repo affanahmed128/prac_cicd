@@ -1,0 +1,27 @@
+name: "Multilevel event pipeline11"
+
+on:
+    push:
+        branches:
+          - master
+          - test
+    pull_request:
+        branches:
+          - master
+    workflow_dispatch:
+
+jobs:
+  on-push:
+      if: github.event_name=="push"
+      runs-on: ubuntu-latest
+      steps:
+        - name: "Running the master push"
+          run: echo "running on master push"
+  
+  on-pull-request:
+      if: github.event_name=="pull_request"
+      runs-on: ubuntu-latest
+      steps:
+        - name: "Running the master pull_request"
+          run: echo "running on master pull_request"
+  
